@@ -21,5 +21,47 @@ Console.WriteLine("[" + string.Join(" ", array) + "]"); */
 // Пример алгоритма O(n^2): сортировка выбором, сортировка пузырьком
 // Задача 3. Рассмотрим задачу с выводом таблицы умножения
 
-int n = Convert.ToInt32(Console.ReadLine());
+/* int n = Convert.ToInt32(Console.ReadLine());
 
+for (int i = 1; i <= n; i++)
+{
+    for (int j = 1; j < n; j++)
+    {
+        Console.Write(i * j);
+        Console.Write("\t");
+    }
+    Console.WriteLine();
+} */
+
+// Как сократить время работы программы?
+// Убрать повторы. Раделим матрицу по диагонали и заполним одну, а затем отзеркалим
+int m = Convert.ToInt32(Console.ReadLine());
+int[,] matrix = new int[m, m];
+/*  Заполнение будет происходить следующим образом
+        1 2 3 4 5
+        2 - - - -
+        3 | - - -
+        4 | | - -
+        4 | | | -
+*/
+for (int i = 0; i < m; i++)
+{   
+    for (int j = i; j < m; j++)
+    {
+            matrix[i, j] = (i + 1) * (j + 1);
+            matrix[j, i] = (i + 1) * (j + 1);
+    }
+    Console.WriteLine();
+}
+
+for (int i = 0; i < m ; i++)
+{
+    for (int j = 0; j < m ; j++)
+    {
+        Console.Write(matrix[i, j]);
+        Console.Write(" ");
+    }
+    Console.WriteLine(" ");
+}
+
+// Время выполнения O(n^2 / 2)
