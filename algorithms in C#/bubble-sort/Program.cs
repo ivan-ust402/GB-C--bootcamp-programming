@@ -108,11 +108,13 @@ for (int i = 0; i < n; i++)
             int temp = array[j];
             array[j] = array[j+1];
             array[j + 1] = temp;
+            // break; //трушно, как в описании
         }
     }
     Console.WriteLine(i + ". Промежуточный массив: [" + string.Join(", ", array) + "]");
 }
 Console.WriteLine();
 Console.WriteLine("Конечный массив: [" + string.Join(", ", array) + "]");
+
 
 
