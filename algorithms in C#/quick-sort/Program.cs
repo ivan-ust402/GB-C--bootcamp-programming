@@ -33,3 +33,58 @@
     2. pivot = arr[6] = 2
     3. Вызвать шаги 1-2 для подмассива слева от pivot и справа от pivot
 */
+
+// Console.WriteLine("Введите количество элементов массива: ");
+// int n = Convert.ToInt32(Console.ReadLine());
+// Заполнение массива
+// int[] array = new int[n];
+// for (int i = 0; i < n; i++) {
+//     Console.Write("Введите число: ");
+//     array[i] = Convert.ToInt32(Console.ReadLine());
+// }
+// Console.WriteLine();
+int[] array = {1, 0, -6, 2, 5, 3, 2};
+Console.WriteLine("Начальный массив: [" + string.Join(", ", array) + "]");
+int[] res = QuickSort(array, 0, array.Length - 1);
+Console.WriteLine("Конечный массив: [" + string.Join(", ", res) + "]");
+
+int[] QuickSort(int[] arr, int minIndex, int maxIndex) {
+    if (minIndex >= maxIndex) return arr;
+    int pivot = GetPivotIndex(arr, minIndex, maxIndex);
+    QuickSort(arr, minIndex, pivot - 1);
+    QuickSort(arr, pivot + 1, maxIndex);
+    return arr;
+}
+
+int GetPivotIndex(int[] arr, int minIndex, int maxIndex) {
+    // Задаем начальный дефолтный pivot за пределами индексации массива
+    int pivotIndex = minIndex - 1;
+    for (int i = minIndex; i <= maxIndex; i++)
+    {
+        if (arr[i] < arr[maxIndex]) {
+            pivotIndex++;
+            Swap(arr, i, pivotIndex);
+        }
+        /* 
+        [1, 0, -6, 2, 5, 3, 2] pivotIndex = -1
+        1. [1, 0, -6, 2, 5, 3, 2] pivotIndex = 0
+        2. [1, 0, -6, 2, 5, 3, 2] pivotIndex = 1
+        3. [1, 0, -6, 2, 5, 3, 2] pivotIndex = 2
+        4. [1, 0, -6, 2, 5, 3, 2] pivotIndex = 2
+        5. [1, 0, -6, 2, 5, 3, 2] pivotIndex = 2
+        6. [1, 0, -6, 2, 5, 3, 2] pivotIndex = 2
+        7. [1, 0, -6, 2, 5, 3, 2] pivotIndex = 2   
+        */
+    }
+    pivotIndex++; //=3
+    Swap(arr, pivotIndex, maxIndex); //[1, 0, -6, 2(pivot), 5, 3, 2]
+    return pivotIndex;
+}
+
+void Swap(int[] array, int leftValue, int rightValue) {
+    int temp = array[leftValue];
+    array[leftValue] = array[rightValue];
+    array[rightValue] = temp;
+}
+
+
