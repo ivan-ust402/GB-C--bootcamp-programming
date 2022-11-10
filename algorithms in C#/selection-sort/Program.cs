@@ -47,3 +47,33 @@
     5. прошлись по всем элементам -> итоговый массив [-3, 2, 6, 9, 15]
 
 */
+
+Console.WriteLine("Введите количество элементов массива: ");
+int n = Convert.ToInt32(Console.ReadLine());
+// Заполнение массива
+int[] array = new int[n];
+for (int i =0; i < n; i++) {
+    Console.Write("Введите число: ");
+    array[i] = Convert.ToInt32(Console.ReadLine());
+}
+Console.WriteLine();
+Console.WriteLine("Начальный массив: [" + string.Join(", ", array) + "]");
+
+// Сортировка
+for (int i = 0; i < n - 1; i++)
+// n - 1 - потому что последний элемент нам не нужен
+{
+    int min_index = i;
+    for (int j = i + 1; j < n; j++)
+    // i + 1 - потому что сравнивать с текущим нет необходимости 
+    {
+        if (array[j] < array[min_index]) {
+            min_index = j;
+        }
+    }
+    int temp = array[min_index];
+    array[min_index] = array[i];
+    array[i] = temp;
+}
+
+Console.WriteLine("Конечный массив: [" + string.Join(", ", array) + "]");
