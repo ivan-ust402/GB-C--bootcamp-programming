@@ -85,6 +85,34 @@
     8 < 9 да
     Итоговый массив -> [0, 1, 3, 5, 7, 8, 9]
 
-    6. 7. 8. Будем проходиться по массиву столько раз сколько в массиве элементов
+    6. 7.  Будем проходиться по массиву столько раз сколько в массиве элементов
 
 */ 
+Console.WriteLine("Введите количество элементов массива: ");
+int n = Convert.ToInt32(Console.ReadLine());
+// Заполнение массива
+int[] array = new int[n];
+for (int i =0; i < n; i++) {
+    Console.Write("Введите число: ");
+    array[i] = Convert.ToInt32(Console.ReadLine());
+}
+Console.WriteLine();
+Console.WriteLine("Начальный массив: [" + string.Join(", ", array) + "]");
+Console.WriteLine();
+// Сортировка пузырьком - попарно переставляем все элементы за один проход, если делать метод как в описании, то нужно выходить из внутреннего цикла с j каждый раз
+for (int i = 0; i < n; i++)
+{
+    for (int j = 0; j < n - 1; j++)
+    {
+        if (array[j] > array[j + 1]) {
+            int temp = array[j];
+            array[j] = array[j+1];
+            array[j + 1] = temp;
+        }
+    }
+    Console.WriteLine(i + ". Промежуточный массив: [" + string.Join(", ", array) + "]");
+}
+Console.WriteLine();
+Console.WriteLine("Конечный массив: [" + string.Join(", ", array) + "]");
+
+
