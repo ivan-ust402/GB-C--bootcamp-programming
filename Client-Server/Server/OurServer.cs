@@ -42,12 +42,17 @@ namespace Server
         void HandleClient(TcpClient client) {
             // Создаем поток, получаем сообщение от клиента
             StreamReader sReader = new StreamReader(client.GetStream(), Encoding.UTF8);
+            StreamWriter sWriter = new StreamWriter(client.GetStream(), Encoding.UTF8);
 
             // Бесконечно держим клиента
             while (true)
             {
                 string message = sReader.ReadLine();
                 Console.WriteLine($"Клиент написал - {message}");
+                Console.Write("Отправьте сообщение клиенту: ");
+                string answer = Console.ReadLine();
+                sWriter.WriteLine(answer);
+                sWriter.Flush();
             }
         }
     }
