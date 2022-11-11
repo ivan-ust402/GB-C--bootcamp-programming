@@ -23,3 +23,19 @@ int[,] MatrixGenerator(int rows, int columns)
     }
     return res;
 }
+
+// Метод перемножения двух матриц
+void SerialMatrixMul(int[,] a, int[,] b) {
+    if(a.GetLength(1) != b.GetLength(0)) throw new System.Exception("Нельзя умножить такие матрицы");
+
+    for (int i = 0; i < a.GetLength(0); i++)
+    {
+        for (int j = 0; j < b.GetLength(1); j++)
+        {
+            for (int k = 0; k < b.GetLength(0); k++)
+            {
+                serialMulRes(i, j) += a[i, k] * b[k, j];
+            }
+        }        
+    }
+}
