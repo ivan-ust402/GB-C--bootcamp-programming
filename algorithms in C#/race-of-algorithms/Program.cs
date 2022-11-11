@@ -82,7 +82,7 @@ int[] CountingSort(int[] array) {
         int correctionFactor = min != 0 ? -min : 0;
         max += correctionFactor;
 
-        int count = new int[max + 1];
+        int[] count = new int[max + 1];
         for (int i = 0; i < array.Length; i++)
         {
             count[array[i] + correctionFactor]++;
@@ -96,12 +96,12 @@ int[] CountingSort(int[] array) {
                 index++;
             }
         }
-        return array;
     }
+    return array;
 }
 
 // Shaker Sort
-int[] ShakerSort(int[] listS) {
+void ShakerSort(int[] listS) {
     int left = 0;
     int right = listS.Length - 1,
     count = 0;
