@@ -8,8 +8,9 @@ namespace Client
         static void Main(string[] args)
         {
             Console.WriteLine("Это наш клиент");
-            OurClient;
+            OurClient ourClient = new OurClient();
         }
+
     }
 }
 
