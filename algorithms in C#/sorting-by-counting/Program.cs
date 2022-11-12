@@ -54,10 +54,12 @@
 Окончание сортировки
 */
 int[] array = {0, 2, 3, 2, 1, 5, 9, 1, 1};
-
+int[] array1 = {0, 2, 4, 10, 20, 5, 6, 1, 2};
 CountingSort(array);
+CountingSortExtended(array1);
 
 Console.WriteLine("[" + string.Join(", ",array) + "]");
+Console.WriteLine("[" + string.Join(", ",array1) + "]");
 
 void CountingSort(int[] inputArray) {
     int[] counters = new int[10]; // массив повторений
@@ -85,3 +87,29 @@ void CountingSort(int[] inputArray) {
 [0, 2, 4, 10, 20, 5, 6, 1, 2]
 диапазон массива теперь будет от 0 до 20
 */
+
+// Генерация гитигнора dotnet new gitignore
+
+void CountingSortExtended(int[] inputArray) {
+    // Поиск максимального числа
+    int max = inputArray.Max();
+    // Поиск минимального числа
+    // int min = inputArray.Min();
+    int size = max + 1;
+    int[] counters = new int[size];
+
+    for (int i = 0; i < inputArray.Length; i++)
+    {
+        counters[inputArray[i]]++;
+    }
+
+    int index = 0;
+    for (int i = 0; i < counters.Length; i++)
+    {
+        for (int j = 0; j < counters[i]; j++)
+        {
+            inputArray[index] = i;
+            index++; 
+        }
+    }
+}
