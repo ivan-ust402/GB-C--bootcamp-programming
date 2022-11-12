@@ -55,11 +55,14 @@
 */
 int[] array = {0, 2, 3, 2, 1, 5, 9, 1, 1};
 int[] array1 = {0, 2, 4, 10, 20, 5, 6, 1, 2};
+int[] array2 = {-10, -5, -9, 0, 2, 5, 1, 3, 1, 0, 1};
 CountingSort(array);
 CountingSortExtended(array1);
+CountingSortUniversal(array2);
 
 Console.WriteLine("[" + string.Join(", ",array) + "]");
 Console.WriteLine("[" + string.Join(", ",array1) + "]");
+Console.WriteLine("[" + string.Join(", ",array2) + "]");
 
 void CountingSort(int[] inputArray) {
     int[] counters = new int[10]; // массив повторений
@@ -109,6 +112,50 @@ void CountingSortExtended(int[] inputArray) {
         for (int j = 0; j < counters[i]; j++)
         {
             inputArray[index] = i;
+            index++; 
+        }
+    }
+}
+
+// Новый случай с отрицательными числами
+// Загвоздка в том, что отрицательных индексов нет
+// Нам нужно задать смещение
+/* 
+{-10, -5, -9, 0, 2, 5, 1, 3, 1, 0, 1}
+
+смещаем массив на 10, т.к. самое минимальное число -10
+
+offset = -10 * -1
+counters [max + offset + 1]
+
+*/
+
+void CountingSortUniversal(int[] inputArray) {
+    // Поиск максимального числа
+    int max = inputArray.Max();
+    // Поиск минимального числа
+    int min = inputArray.Min();
+    int offset = 0;
+    int size = max + 1;
+    if (min < 0)
+    {
+        offset = -min;
+        size = size + offset;
+    } 
+
+    int[] counters = new int[size];
+
+    for (int i = 0; i < inputArray.Length; i++)
+    {
+        counters[inputArray[i] + offset]++;
+    }
+
+    int index = 0;
+    for (int i = 0; i < counters.Length; i++)
+    {
+        for (int j = 0; j < counters[i]; j++)
+        {
+            inputArray[index] = i - offset;
             index++; 
         }
     }
