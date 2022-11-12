@@ -55,7 +55,9 @@
 */
 int[] array = {0, 2, 3, 2, 1, 5, 9, 1, 1};
 
+CountingSort(array);
 
+Console.WriteLine("[" + string.Join(", ",array) + "]");
 
 void CountingSort(int[] inputArray) {
     int[] counters = new int[10]; // массив повторений
